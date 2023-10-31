@@ -65,6 +65,11 @@
 
 		ctx.drawImage(img, x, y, width, height);
 		ctx.restore();
+		output.innerHTML = '';
+		output.appendChild(canvas);
+	}
+
+	function fixateImage() {
 		const dataUrl = canvas.toDataURL('image/png');
 		output.innerHTML = `<img src="${dataUrl}" />`;
 	}
@@ -133,8 +138,12 @@
 		});
 	}
 
-	function onChange(_: Event & { currentTarget: EventTarget & HTMLInputElement }) {
+	function onInput(_: Event & { currentTarget: EventTarget & HTMLInputElement }) {
 		updateImage();
+	}
+
+	function onChange(_: Event & { currentTarget: EventTarget & HTMLInputElement }) {
+		fixateImage();
 	}
 </script>
 
@@ -148,6 +157,7 @@
 					id="x-offset"
 					type="range"
 					bind:value={xOffset}
+					on:input={onInput}
 					on:change={onChange}
 					min="-512"
 					max="512"
@@ -160,6 +170,7 @@
 					id="y-offset"
 					type="range"
 					bind:value={yOffset}
+					on:input={onInput}
 					on:change={onChange}
 					min="-512"
 					max="512"
@@ -172,6 +183,7 @@
 					id="rotation"
 					type="range"
 					bind:value={rotation}
+					on:input={onInput}
 					on:change={onChange}
 					min="-360"
 					max="360"
@@ -184,6 +196,7 @@
 					id="alpha"
 					type="range"
 					bind:value={treshold}
+					on:input={onInput}
 					on:change={onChange}
 					min="0"
 					max="254"
@@ -196,6 +209,7 @@
 					id="padding"
 					type="range"
 					bind:value={padding}
+					on:input={onInput}
 					on:change={onChange}
 					min="0"
 					max="100"
@@ -205,7 +219,7 @@
 		{:else}
 			<div class="input">
 				<label for="color">color</label>
-				<input id="color" type="color" bind:value={color} on:change={onChange} />
+				<input id="color" type="color" bind:value={color} on:input={onInput} on:change={onChange} />
 			</div>
 		{/if}
 	</div>
