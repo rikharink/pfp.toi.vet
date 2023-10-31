@@ -31,6 +31,7 @@
 	}
 
 	label {
-		display: block;
+		display: flex;
+		align-items: center;
 	}
 </style>
