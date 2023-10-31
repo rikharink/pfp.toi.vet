@@ -9,6 +9,7 @@
 	export let padding = 10;
 	export let xOffset = 0;
 	export let yOffset = 0;
+	export let rotation = 0;
 	export let color = '#E31C79';
 
 	export let blob: Blob | null = null;
@@ -56,7 +57,14 @@
 		const x = (bg.width - width) / 2 + xOffset;
 		const y = bg.height - height + yOffset;
 
+		// add rotation
+		ctx.save();
+		ctx.translate(x + width / 2, y + height / 2);
+		ctx.rotate((rotation * Math.PI) / 180);
+		ctx.translate(-(x + width / 2), -(y + height / 2));
+
 		ctx.drawImage(img, x, y, width, height);
+		ctx.restore();
 		const dataUrl = canvas.toDataURL('image/png');
 		output.innerHTML = `<img src="${dataUrl}" />`;
 	}
@@ -159,6 +167,18 @@
 				/>
 			</div>
 			<div class="input">
+				<label for="rotation">rotation</label>
+				<input
+					id="rotation"
+					type="range"
+					bind:value={rotation}
+					on:change={onChange}
+					min="-360"
+					max="360"
+					step="1"
+				/>
+			</div>
+			<div class="input">
 				<label for="alpha">transparency treshold</label>
 				<input
 					id="alpha"
@@ -166,7 +186,7 @@
 					bind:value={treshold}
 					on:change={onChange}
 					min="0"
-					max="255"
+					max="254"
 					step="1"
 				/>
 			</div>
@@ -204,6 +224,7 @@
 		justify-content: center;
 		align-items: center;
 		padding-top: 1em;
+		width: 100%;
 	}
 
 	.input label {
