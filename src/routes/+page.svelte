@@ -1,5 +1,5 @@
 <script lang="ts">
-	import removeBackground from '@imgly/background-removal';
+	import imglyRemoveBackground from "@imgly/background-removal"
 	import Pfp from '$lib/Pfp.svelte';
 	import ImagePicker from '$lib/ImagePicker.svelte';
 	import { onMount } from 'svelte';
@@ -25,7 +25,8 @@
 		const file = event?.detail?.file;
 		if (!file) return;
 		imageSelected = true;
-		blob = removeBackground(file, {
+		blob = imglyRemoveBackground(file, {
+			publicPath: "/",
 			progress: onProgress
 		});
 	}
