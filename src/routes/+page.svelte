@@ -26,7 +26,7 @@
 		if (!file) return;
 		imageSelected = true;
 		blob = imglyRemoveBackground(file, {
-			publicPath: "https://pfp.toi.vet",
+			publicPath: "https://pfp.toi.vet/assets/",
 			progress: onProgress
 		});
 	}
