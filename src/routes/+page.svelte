@@ -1,5 +1,4 @@
 <script lang="ts">
-	import imglyRemoveBackground from "@imgly/background-removal"
 	import Pfp from '$lib/Pfp.svelte';
 	import ImagePicker from '$lib/ImagePicker.svelte';
 	import { onMount } from 'svelte';
@@ -20,13 +19,14 @@
 		anonymousImage = await response.arrayBuffer();
 	}
 
-	function onImageSelected(event: CustomEvent<{ file: ArrayBuffer }>) {
+	async function onImageSelected(event: CustomEvent<{ file: ArrayBuffer }>) {
+		const imglyRemoveBackground = await import('@imgly/background-removal');
 		isAnonymous = false;
 		const file = event?.detail?.file;
 		if (!file) return;
 		imageSelected = true;
-		blob = imglyRemoveBackground(file, {
-			publicPath: "https://pfp.toi.vet/assets/",
+		blob = imglyRemoveBackground.default(file, {
+			publicPath: "https://pfp.toi.vet",
 			progress: onProgress
 		});
 	}
