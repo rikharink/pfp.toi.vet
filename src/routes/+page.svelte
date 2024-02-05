@@ -26,14 +26,9 @@
 				format: "image/png",
 				quality: 1
 			},
-			publicPath: "https://pfp.toi.vet",
+			publicPath: "https://pfp.toi.vet/assets/",
 			progress: onProgress
 		};
-
-		await imglyRemoveBackground.preload(config as any).then(() => {
-			console.log('Preloaded');
-		});
-
 		isAnonymous = false;
 		const file = event?.detail?.file;
 		if (!file) return;
