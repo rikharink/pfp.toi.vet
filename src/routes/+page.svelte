@@ -2,8 +2,12 @@
 	import Pfp from '$lib/Pfp.svelte';
 	import ImagePicker from '$lib/ImagePicker.svelte';
 	import { onMount } from 'svelte';
-	let blob: Promise<Blob>;
+
+	import removeBackground from '@imgly/background-removal';
+
+	let blob: Blob;
 	let imageSelected = false;
+	let isDone = false;
 	let message = '';
 	let isAnonymous = false;
 	let anonymousImage: ArrayBuffer;
@@ -19,21 +23,22 @@
 		anonymousImage = await response.arrayBuffer();
 	}
 
-	async function onImageSelected(event: CustomEvent<{ file: ArrayBuffer }>) {
-		const imglyRemoveBackground = await import('@imgly/background-removal');
+	async function onImageSelected(event: CustomEvent<{ blob: Blob }>) {
+		isDone = false;
 		const config = {
-			output: {
-				format: "image/png",
-				quality: 1
-			},
-			publicPath: "https://pfp.toi.vet/assets/",
 			progress: onProgress
 		};
 		isAnonymous = false;
-		const file = event?.detail?.file;
-		if (!file) return;
+		const blb = event?.detail?.blob;
+		if (!blb) return;
 		imageSelected = true;
-		blob = imglyRemoveBackground.default(file, config as any);
+		
+		let result = await removeBackground(blb, config as any).catch((e) => {
+			console.error(e);
+			message = 'something went wrong 🙈';
+		});
+		blob = result as Blob;
+		isDone = true;
 	}
 
 	function onProgress(key: string) {
@@ -51,9 +56,8 @@
 	function makeAnonPicture(_: MouseEvent & { currentTarget: EventTarget & HTMLButtonElement }) {
 		imageSelected = true;
 		isAnonymous = true;
-		blob = new Promise((resolve) => {
-			resolve(new Blob([anonymousImage]));
-		});
+		blob = new Blob([anonymousImage]);
+		isDone = true;
 	}
 
 	onMount(async () => {
@@ -64,20 +68,15 @@
 <main>
 	<h1>pfp.toi.vet</h1>
 	<p class="disclaimer">
-		Select a picture and preview how awesome you look in topicus style! <br/>
-		If you'd rather stay anonymous there is also an option for you! <br/><br/>
-		Your picture(s) will not be uploaded, all processing
-		happens on your device, no data is stored anywhere.
+		Select a picture and preview how awesome you look in topicus style! <br />
+		If you'd rather stay anonymous there is also an option for you! <br /><br />
+		Your picture(s) will not be uploaded, all processing happens on your device, no data is stored anywhere.
 	</p>
 	{#if message}
 		<p class="message">{message}</p>
 	{/if}
-	{#if imageSelected}
-		{#await blob then blob}
-			<Pfp {blob} {isAnonymous} on:message={onMessage} />
-		{:catch}
-			<p>something went wrong 🙈</p>
-		{/await}
+	{#if isDone}
+		<Pfp {blob} {isAnonymous} on:message={onMessage} />
 	{/if}
 	<div class="actions">
 		<ImagePicker on:fileSelected={onImageSelected} />

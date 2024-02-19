@@ -6,11 +6,8 @@ settings:
 
 dependencies:
   '@imgly/background-removal':
-    specifier: ^1.4.1
-    version: 1.4.1
-  '@imgly/background-removal-data':
-    specifier: ^1.4.1
-    version: 1.4.1
+    specifier: ^1.4.4
+    version: 1.4.4
 
 devDependencies:
   '@sveltejs/adapter-auto':
@@ -338,21 +335,16 @@ packages:
     resolution: {integrity: sha512-dvuCeX5fC9dXgJn9t+X5atfmgQAzUOWqS1254Gh0m6i8wKd10ebXkfNKiRK+1GWi/yTvvLDHpoxLr0xxxeslWw==}
     dev: true
 
-  /@imgly/background-removal-data@1.4.1:
-    resolution: {integrity: sha512-Jykbx5hgtR7O3rqLIGJm0EcZjOws9vM+Hg28z+UgT+vLMSTL28I17C7lD3aH+z2hNGDVaAVMDVSwxsOUt40P6Q==}
-    dependencies:
-      onnxruntime-web: 1.17.0
-    dev: false
-
-  /@imgly/background-removal@1.4.1:
-    resolution: {integrity: sha512-C8+zeRqoZRqji0yw75bG4WqiNOlxhHhHWd1ZqzTCsfs9XggHG67uGVvXbeLONN06bhucUWMqu5lmDvw5EWVILg==}
+  /@imgly/background-removal@1.4.4:
+    resolution: {integrity: sha512-Y2yL+JqwLptVwDojzqYD1uaaRq1GKm1Wzpw5yKGlxcoe5itOhmxOKj8szxJV0NBp0TMBSwNx21xRwyVDcrvZow==}
     dependencies:
       '@types/lodash': 4.14.202
-      '@types/node': 20.11.16
+      '@types/ndarray': 1.0.14
+      '@types/node': 20.3.3
       lodash: 4.17.21
       ndarray: 1.0.19
       onnxruntime-web: 1.17.0
-      zod: 3.22.4
+      zod: 3.21.4
     dev: false
 
   /@jridgewell/gen-mapping@0.3.3:
@@ -644,10 +636,18 @@ packages:
     resolution: {integrity: sha512-OvlIYQK9tNneDlS0VN54LLd5uiPCBOp7gS5Z0f1mjoJYBrtStzgmJBxONW3U6OZqdtNzZPmn9BS/7WI7BFFcFQ==}
     dev: false
 
+  /@types/ndarray@1.0.14:
+    resolution: {integrity: sha512-oANmFZMnFQvb219SSBIhI1Ih/r4CvHDOzkWyJS/XRqkMrGH5/kaPSA1hQhdIBzouaE+5KpE/f5ylI9cujmckQg==}
+    dev: false
+
   /@types/node@20.11.16:
     resolution: {integrity: sha512-gKb0enTmRCzXSSUJDq6/sPcqrfCv2mkkG6Jt/clpn5eiCbKTY+SgZUxo+p8ZKMof5dCp9vHQUAB7wOUTod22wQ==}
     dependencies:
       undici-types: 5.26.5
+    dev: false
+
+  /@types/node@20.3.3:
+    resolution: {integrity: sha512-wheIYdr4NYML61AjC8MKj/2jrR/kDQri/CIpVoZwldwhnIrD/j9jIU5bJ8yBKuB2VhpFV7Ab6G2XkBjv9r9Zzw==}
     dev: false
 
   /@types/pug@2.0.10:
@@ -2215,6 +2215,6 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /zod@3.22.4:
-    resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
+  /zod@3.21.4:
+    resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
     dev: false

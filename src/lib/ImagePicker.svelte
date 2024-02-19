@@ -8,7 +8,8 @@
 		const file = selectedFiles[0];
 		const reader = new FileReader();
 		reader.addEventListener('load', async () => {
-			dispatch('fileSelected', { file: reader.result as ArrayBuffer });
+			let blob = new Blob([reader.result as ArrayBuffer], { type: file.type });
+			dispatch('fileSelected', { blob: blob });
 		});
 		reader.readAsArrayBuffer(file);
 	}
