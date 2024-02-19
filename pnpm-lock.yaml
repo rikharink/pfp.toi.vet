@@ -8,6 +8,9 @@ dependencies:
   '@imgly/background-removal':
     specifier: ^1.4.4
     version: 1.4.4
+  '@imgly/background-removal-data':
+    specifier: ^1.4.4
+    version: 1.4.4
 
 devDependencies:
   '@sveltejs/adapter-auto':
@@ -334,6 +337,12 @@ packages:
   /@humanwhocodes/object-schema@2.0.1:
     resolution: {integrity: sha512-dvuCeX5fC9dXgJn9t+X5atfmgQAzUOWqS1254Gh0m6i8wKd10ebXkfNKiRK+1GWi/yTvvLDHpoxLr0xxxeslWw==}
     dev: true
+
+  /@imgly/background-removal-data@1.4.4:
+    resolution: {integrity: sha512-SMqRFvI2YEWnURewIKMoRZ7DhW+m+EjW1gV3/xljfFlE2bKLr4i8LSAluehyJsrldepVRiyeFzluFds0uTq0iA==}
+    dependencies:
+      onnxruntime-web: 1.17.0
+    dev: false
 
   /@imgly/background-removal@1.4.4:
     resolution: {integrity: sha512-Y2yL+JqwLptVwDojzqYD1uaaRq1GKm1Wzpw5yKGlxcoe5itOhmxOKj8szxJV0NBp0TMBSwNx21xRwyVDcrvZow==}

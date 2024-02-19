@@ -26,6 +26,7 @@
 	async function onImageSelected(event: CustomEvent<{ blob: Blob }>) {
 		isDone = false;
 		const config = {
+			publicPath: "https://pfp.toi.vet/assets/",
 			progress: onProgress
 		};
 		isAnonymous = false;

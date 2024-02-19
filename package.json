@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
-		"postinstall": "cp index.mjs.fix .../node_modules/@imgly/background-removal/dist/index.mjs",
+		"postinstall": "cp index.mjs.fix node_modules/@imgly/background-removal/dist/index.mjs",
 		"build": "cp node_modules/@imgly/background-removal-data/dist/* static/assets/ && vite build",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -31,6 +31,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@imgly/background-removal": "^1.4.4"
+		"@imgly/background-removal": "^1.4.4",
+		"@imgly/background-removal-data": "^1.4.4"
 	}
 }
